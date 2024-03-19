@@ -1,30 +1,29 @@
 package ru.practicum.dto;
 
-import lombok.AccessLevel;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
+import com.fasterxml.jackson.annotation.JsonFormat;
+import lombok.*;
 import lombok.experimental.FieldDefaults;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
+import java.time.LocalDateTime;
+
+import static ru.practicum.Util.DATE_FORMAT;
 
 @Data
 @Builder
 @AllArgsConstructor
+@NoArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class HitDto {
     Long id;
-    @NotNull
     @NotBlank
     String app;
-    @NotNull
     @NotBlank
     String uri;
-    @NotNull
     @NotBlank
     String ip;
     @NotNull
-    @NotBlank
-    String timestamp;
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = DATE_FORMAT)
+    LocalDateTime timestamp;
 }
